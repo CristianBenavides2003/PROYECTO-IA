@@ -3,10 +3,10 @@ import cv2
 import numpy as np
 
 # Directorio de trabajo actual donde está la carpeta 'Letras'
-main_folder = os.path.join(os.getcwd(), 'Letras')
+main_folder = os.path.join(os.getcwd(), 'Media/Images')
 
 # Crear la carpeta de salida dentro del directorio de trabajo
-output_folder = os.path.join(os.getcwd(), 'letra_binary')
+output_folder = os.path.join(os.getcwd(), 'Media/binary_letters')
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)  # Crear carpeta si no existe
 
