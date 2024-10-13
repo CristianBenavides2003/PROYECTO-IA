@@ -39,7 +39,7 @@ for letter_folder_name in letter_folders:
         # Invertir los valores de la imagen binaria (invertir blancos y negros)
         binary_img = 1 - binary_img
 
-        # Redimensionar la imagen a 20x20 píxeles
+        # Redimensionar la imagen a 100x100 píxeles
         resized_img = cv2.resize(binary_img, (100, 100), interpolation=cv2.INTER_NEAREST)
 
         # Asegurar que la matriz tiene solo valores 0 y 1
