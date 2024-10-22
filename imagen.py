@@ -3,10 +3,10 @@ import cv2
 import numpy as np
 
 # Directorio de trabajo actual donde está la carpeta 'Letras'
-main_folder = os.path.join(os.getcwd(), 'Media/Images')
+main_folder = os.path.join(os.getcwd(), 'Media/Imagenes')
 
 # Crear la carpeta de salida dentro del directorio de trabajo
-output_folder = os.path.join(os.getcwd(), 'Media/binary_letters')
+output_folder = os.path.join(os.getcwd(), 'Media/letras_binarias')
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)  # Crear carpeta si no existe
 
@@ -39,8 +39,22 @@ for letter_folder_name in letter_folders:
         # Invertir los valores de la imagen binaria (invertir blancos y negros)
         binary_img = 1 - binary_img
 
-        # Redimensionar la imagen a 100x100 píxeles
-        resized_img = cv2.resize(binary_img, (100, 100), interpolation=cv2.INTER_NEAREST)
+        # Encontrar los contornos de la imagen binaria
+        contours, _ = cv2.findContours(binary_img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+        # Si hay contornos, determinar el área de la región de interés (ROI)
+        if contours:
+            # Encuentra el rectángulo más pequeño que contiene todos los contornos
+            x, y, w, h = cv2.boundingRect(contours[0])  # Usar el primer contorno, que debería ser suficiente
+            
+            # Recortar la imagen para quedarse solo con la región que contiene información
+            cropped_img = binary_img[y:y+h, x:x+w]
+        else:
+            # Si no hay contornos, usar la imagen original
+            cropped_img = binary_img
+
+        # Redimensionar la imagen recortada a 100x100 píxeles
+        resized_img = cv2.resize(cropped_img, (100, 100), interpolation=cv2.INTER_NEAREST)
 
         # Asegurar que la matriz tiene solo valores 0 y 1
         final_binary_img = np.array(resized_img, dtype=np.int32)

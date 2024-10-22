@@ -3,7 +3,7 @@ import numpy as np
 import csv
 
 # Directorio de trabajo actual donde está la carpeta 'binary_letters'
-main_folder = os.path.join(os.getcwd(), 'Media/binary_letters')
+main_folder = os.path.join(os.getcwd(), 'Media/letras_binarias')
 
 # Crear la carpeta de salida para guardar los vectores
 output_folder = os.path.join(os.getcwd(), 'Media/Matriz')

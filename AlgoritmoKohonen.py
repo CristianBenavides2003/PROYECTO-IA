@@ -141,7 +141,7 @@ def load_file():
 def run_kohonen():
     entries = load_file()
     if entries is not None and len(entries) > 0:
-        kohonen2 = KohonenAlgorithm(entries, neurons=8, iterations=1000)
+        kohonen2 = KohonenAlgorithm(entries, neurons=80, iterations=1000)
         kohonen2.train()
     else:
         messagebox.showerror("Error", "No se encontraron entradas válidas en el archivo.")
